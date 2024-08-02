@@ -5,13 +5,14 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import img from "../../assets/images/contentBg1.png";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-// import { imageUpload } from "../../api/utils";
+import { imageUpload } from "../../api/utils";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
-  const { createUser, updateUserProfile, loading, setLoading } = useAuth();
+  const { createUser, updateUserProfile, loading, setLoading, setUser } =
+    useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -21,35 +22,50 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    // const image = form.image.files[0];
+    const confirmPassword = form.confirmPassword.value;
+    const image = form.image.files[0];
+    const accepted = e.target.terms.checked;
+
+    if (password.length < 6) {
+      return toast.error("Password length should be minimum 6 digit");
+    }
+    if (!accepted) {
+      return toast.error("Please accept our terms of service!");
+    }
+    if (password !== confirmPassword) {
+      return toast.error("Didn't match your confirm password! Please try again!");
+    }
 
     try {
       setLoading(true);
       // 1. Upload image and get image url
-      // const image_url = await imageUpload(image);
-      // console.log(image_url)
+      const image_url = await imageUpload(image);
 
       // 2. User Registration
-      await createUser(email, password);
+      const result = await createUser(email, password);
 
       // 3. Save username and photo in firebase
-      await updateUserProfile(name);
+      await updateUserProfile(name, image_url);
+
+      // Optimistic UI update
+      setUser({ ...result?.user, photoURL: image_url, displayName: name });
 
       navigate(from);
       toast.success("SignUp Successful");
+      setLoading(false);
     } catch (err) {
       console.log(err);
       toast.error(err.message);
       setLoading(false);
     }
   };
-  
+
   return (
     <div className='flex justify-center items-center min-h-screen max-w-7xl mx-auto gap-24'>
       <div className='flex flex-col max-w-md p-6 rounded-md'>
         <div className='mb-8 text-start'>
           <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>
-          <h1 className='my-3 text-xl font-bold'>Sign Up To Your Account</h1>
+          <h1 className='my-3 text-3xl font-bold'>Sign Up To Your Account</h1>
           <p className=''>
             Welcome Back! By click the sign up button, you&apos;re agree to
             Zenitood Terms and Service and acknowledge the{" "}
@@ -69,6 +85,7 @@ const SignUp = () => {
                 name='name'
                 id='name'
                 placeholder='@username'
+                required
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
                 data-temp-mail-org='0'
               />
@@ -77,7 +94,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor='email'
-                className='block mb-2  text-[#152A16] font-semibold'>
+                className='block mb-2 text-[#152A16] font-semibold'>
                 Email address
               </label>
               <input
@@ -88,6 +105,22 @@ const SignUp = () => {
                 placeholder='Enter your email'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
                 data-temp-mail-org='0'
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor='image'
+                className='block mb-2 text-[#152A16] font-semibold'>
+                Select Image:
+              </label>
+              <input
+                required
+                type='file'
+                id='image'
+                name='image'
+                accept='image/*'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
               />
             </div>
 
@@ -122,22 +155,22 @@ const SignUp = () => {
             <div className='relative'>
               <div className='flex justify-between'>
                 <label
-                  htmlFor='confirm-password'
+                  htmlFor='confirmPassword'
                   className=' mb-2 text-[#152A16] font-semibold'>
                   Confirm Password
                 </label>
               </div>
               <input
                 type={showConfirmPassword ? "text" : "password"}
-                name='confirm-password'
+                name='confirmPassword'
                 autoComplete='new-password'
-                id='confirm-password'
+                id='confirmPassword'
                 required
                 placeholder='Re-type Password'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
               />
               <div
-                onClick={() => setShowConfirmPassword(!showPassword)}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className='absolute right-[3%] top-[58%]'>
                 {showConfirmPassword ? (
                   <IoEyeOutline className='text-xl' />
@@ -153,7 +186,7 @@ const SignUp = () => {
               <input
                 id='terms'
                 type='checkbox'
-                value=''
+                name='terms'
                 className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300'
                 required
               />
@@ -169,7 +202,7 @@ const SignUp = () => {
             <button
               disabled={loading}
               type='submit'
-              className='bg-[#4285F3] w-[60%] rounded-md py-3 text-white'>
+              className='bg-[#4285F3] w-[60%] rounded-md py-3 text-white cursor-pointer'>
               {loading ? (
                 <TbFidgetSpinner className='animate-spin m-auto' />
               ) : (

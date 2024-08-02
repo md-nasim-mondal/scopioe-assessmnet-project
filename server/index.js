@@ -47,41 +47,67 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    const db = client.db("scopioeAssessmentDB");
+    const usersCollection = db.collection("users");
+
     // auth related api
-    app.post('/jwt', async (req, res) => {
-      const user = req.body
+    app.post("/jwt", async (req, res) => {
+      const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '365d',
-      })
+        expiresIn: "1d",
+      });
       res
-        .cookie('token', token, {
+        .cookie("token", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
         })
-        .send({ success: true })
-    })
+        .send({ success: true });
+    });
     // Logout
-    app.get('/logout', async (req, res) => {
+    app.get("/logout", async (req, res) => {
       try {
         res
-          .clearCookie('token', {
+          .clearCookie("token", {
             maxAge: 0,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
           })
-          .send({ success: true })
-        console.log('Logout successful')
+          .send({ success: true });
+        console.log("Logout successful");
       } catch (err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
       }
-    })
+    });
+
+    // save user data in db
+    app.post("/user", async (req, res) => {
+      const user = req.body;
+      const query = { email: user?.email };
+      // check if user already exists in db
+      const isExist = await usersCollection.findOne(query);
+      // if (isExist) return res.send(isExist);
+      if (isExist) {
+          // if existing user login again
+          return res.send(isExist);
+      }
+      
+      // save user for the first time
+      const userDoc = {
+        $set: {
+          ...user,
+          timestamp: Date.now(),
+        },
+      };
+      const result = await usersCollection.insertOne(userDoc)
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
-    await client.db('admin').command({ ping: 1 })
+    // await client.db('admin').command({ ping: 1 })
     console.log(
-      'Pinged your deployment. You successfully connected to MongoDB!'
-    )
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
   } finally {
     // Ensures that the client will close when you finish/error
   }
