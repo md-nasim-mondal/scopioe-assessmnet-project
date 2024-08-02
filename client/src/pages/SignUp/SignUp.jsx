@@ -10,7 +10,7 @@ import { imageUpload } from "../../api/utils";
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || "/";
+  const from = location?.state || "/home";
   const { createUser, updateUserProfile, loading, setLoading, setUser } =
     useAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -214,7 +214,7 @@ const SignUp = () => {
         <p className='px-6 py-3  text-center text-[#152A16] font-medium'>
           Already Have an Account?{" "}
           <Link
-            to='/login'
+            to='/'
             className='underline hover:text-rose-500 text-[#4285F3]'>
             Login
           </Link>

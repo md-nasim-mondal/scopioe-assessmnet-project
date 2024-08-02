@@ -22,6 +22,8 @@ const AuthProvider = ({ children }) => {
   // const axiosCommon = useAxiosCommon();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [userDropDownOpen, setUserDropDownOpen] = useState(false);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -111,6 +113,10 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     logOut,
     updateUserProfile,
+    showSidebar,
+    setShowSidebar,
+    userDropDownOpen,
+    setUserDropDownOpen,
   };
 
   return (

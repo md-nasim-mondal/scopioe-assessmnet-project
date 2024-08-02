@@ -11,10 +11,11 @@ import img from "../../assets/images/contentBg1.png";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || "/";
+  const from = location?.state || "/home";
   const { signIn, signInWithGoogle, loading, setLoading, resetPassword } =
     useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
