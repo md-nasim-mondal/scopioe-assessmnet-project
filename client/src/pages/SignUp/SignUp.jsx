@@ -2,19 +2,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "./../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
-import img from '../../assets/images/contentBg1.png'
+import img from "../../assets/images/contentBg1.png";
+import { useState } from "react";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 // import { imageUpload } from "../../api/utils";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
-  const {
-    createUser,
-    updateUserProfile,
-    loading,
-    setLoading,
-  } = useAuth();
+  const { createUser, updateUserProfile, loading, setLoading } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -43,24 +43,25 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+  
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div className='flex justify-center items-center min-h-screen max-w-7xl mx-auto gap-24'>
+      <div className='flex flex-col max-w-md p-6 rounded-md'>
         <div className='mb-8 text-start'>
-          <h1 className='my-3 text-4xl font-bold'>LOGO</h1>
-          <h1 className='my-3 text-3xl font-bold'>Sign Up To Your Account</h1>
-          <p className='text-sm text-gray-400'>
+          <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>
+          <h1 className='my-3 text-xl font-bold'>Sign Up To Your Account</h1>
+          <p className=''>
             Welcome Back! By click the sign up button, you&apos;re agree to
             Zenitood Terms and Service and acknowledge the{" "}
-            <span className='text-[#4285F3]'>Privacy and Policy</span>
+            <span className='text-[#4285F3] underline'>Privacy and Policy</span>
           </p>
         </div>
-        <form onSubmit={handleSubmit} className='space-y-6'>
+        <form onSubmit={handleSubmit} className='space-y-8'>
           <div className='space-y-4'>
             <div>
               <label
                 htmlFor='name'
-                className='block mb-2 text-sm text-[#152A16] font-semibold'>
+                className='block mb-2  text-[#152A16] font-semibold'>
                 Name
               </label>
               <input
@@ -68,14 +69,15 @@ const SignUp = () => {
                 name='name'
                 id='name'
                 placeholder='@username'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
                 data-temp-mail-org='0'
               />
             </div>
+
             <div>
               <label
                 htmlFor='email'
-                className='block mb-2 text-sm text-[#152A16] font-semibold'>
+                className='block mb-2  text-[#152A16] font-semibold'>
                 Email address
               </label>
               <input
@@ -84,45 +86,65 @@ const SignUp = () => {
                 id='email'
                 required
                 placeholder='Enter your email'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
                 data-temp-mail-org='0'
               />
             </div>
-            <div>
+
+            <div className='relative'>
               <div className='flex justify-between'>
                 <label
                   htmlFor='password'
-                  className='text-sm mb-2 text-[#152A16] font-semibold'>
+                  className='mb-2 text-[#152A16] font-semibold'>
                   Password
                 </label>
               </div>
               <input
-                type='password'
+                type={showPassword ? "text" : "password"}
                 name='password'
                 autoComplete='new-password'
                 id='password'
                 required
                 placeholder='Enter your password'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
               />
+              <div
+                onClick={() => setShowPassword(!showPassword)}
+                className='absolute right-[3%] top-[58%]'>
+                {showPassword ? (
+                  <IoEyeOutline className='text-xl' />
+                ) : (
+                  <IoEyeOffOutline className='text-xl' />
+                )}
+              </div>
             </div>
-            <div>
+
+            <div className='relative'>
               <div className='flex justify-between'>
                 <label
-                  htmlFor='password'
-                  className='text-sm mb-2 text-[#152A16] font-semibold'>
+                  htmlFor='confirm-password'
+                  className=' mb-2 text-[#152A16] font-semibold'>
                   Confirm Password
                 </label>
               </div>
               <input
-                type='password'
-                name='password'
+                type={showConfirmPassword ? "text" : "password"}
+                name='confirm-password'
                 autoComplete='new-password'
-                id='password'
+                id='confirm-password'
                 required
                 placeholder='Re-type Password'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
               />
+              <div
+                onClick={() => setShowConfirmPassword(!showPassword)}
+                className='absolute right-[3%] top-[58%]'>
+                {showConfirmPassword ? (
+                  <IoEyeOutline className='text-xl' />
+                ) : (
+                  <IoEyeOffOutline className='text-xl' />
+                )}
+              </div>
             </div>
           </div>
 
@@ -132,19 +154,15 @@ const SignUp = () => {
                 id='terms'
                 type='checkbox'
                 value=''
-                className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800'
+                className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300'
                 required
               />
+              <label htmlFor='terms' className='ms-2 text-[#4285F3]'>
+                <a href='#' className='text-blue-600 hover:underline'>
+                  Accept Terms of Services
+                </a>
+              </label>
             </div>
-            <label
-              htmlFor='terms'
-              className='ms-2 text-sm text-[#4285F3] dark:text-gray-300'>
-              <a
-                href='#'
-                className='text-blue-600 hover:underline dark:text-blue-500'>
-                Accept Terms of Services
-              </a>
-            </label>
           </div>
 
           <div className='text-center'>
@@ -160,11 +178,11 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-        <p className='px-6 text-sm text-center text-gray-400'>
-          Already have an account?{" "}
+        <p className='px-6 py-3  text-center text-[#152A16] font-medium'>
+          Already Have an Account?{" "}
           <Link
             to='/login'
-            className='hover:underline hover:text-rose-500 text-gray-600'>
+            className='underline hover:text-rose-500 text-[#4285F3]'>
             Login
           </Link>
         </p>
