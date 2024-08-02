@@ -191,7 +191,7 @@ const SignUp = () => {
                 required
               />
               <label htmlFor='terms' className='ms-2 text-[#4285F3]'>
-                <a href='#' className='text-blue-600 hover:underline'>
+                <a href='#' className='hover:underline'>
                   Accept Terms of Services
                 </a>
               </label>
@@ -202,7 +202,7 @@ const SignUp = () => {
             <button
               disabled={loading}
               type='submit'
-              className='bg-[#4285F3] w-[60%] rounded-md py-3 text-white cursor-pointer'>
+              className='bg-[#4285F3] w-[60%] rounded-lg py-3 text-white disabled:cursor-not-allowed cursor-pointer'>
               {loading ? (
                 <TbFidgetSpinner className='animate-spin m-auto' />
               ) : (
