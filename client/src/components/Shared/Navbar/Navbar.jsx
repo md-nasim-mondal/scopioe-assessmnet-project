@@ -8,7 +8,7 @@ import ThemeToggle from "../../ThemeToggle/ThemeToggle";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   return (
-    <div className='w-full bg-white z-10 shadow-sm'>
+    <div className='w-full bg-white dark:bg-gray-800 z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
@@ -21,7 +21,7 @@ const Navbar = () => {
                   <div className='flex flex-row items-center gap-3'>
                     <div className='border-r-2 pr-6'>
                       <span>
-                        <IoNotificationsOutline className='text-2xl w-12 h-12 border rounded-full p-2' />
+                        <IoNotificationsOutline className='text-2xl w-12 h-12 border rounded-full p-2 dark:text-white' />
                       </span>
                     </div>
                     <div>

@@ -61,7 +61,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='flex justify-center items-center min-h-screen max-w-7xl mx-auto gap-24'>
+    <div className='flex justify-center items-center min-h-screen mx-auto gap-24 bg-white'>
       <div className='flex flex-col max-w-md p-6 rounded-md'>
         <div className='mb-8 text-start'>
           <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>

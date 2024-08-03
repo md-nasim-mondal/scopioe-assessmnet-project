@@ -63,7 +63,7 @@ const Login = () => {
     }
   };
   return (
-    <div className='flex justify-center items-center min-h-screen gap-24'>
+    <div className='flex justify-center items-center min-h-screen gap-24 bg-white'>
       <div className='flex flex-col lg:min-w-[428px] max-w-md p-2'>
         <div className='mb-8 text-start'>
           <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>
