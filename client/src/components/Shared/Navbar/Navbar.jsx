@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import UserMenuDropdown from "../../Dropdown/UserMenuDropdown";
 import { CiLogin } from "react-icons/ci";
 import { IoNotificationsOutline } from "react-icons/io5";
+import ThemeToggle from "../../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -29,6 +30,7 @@ const Navbar = () => {
                         <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
                           <CiLogin className='text-2xl' />
                         </span>
+                        <ThemeToggle />
                       </div>
                     </div>
                   </div>
