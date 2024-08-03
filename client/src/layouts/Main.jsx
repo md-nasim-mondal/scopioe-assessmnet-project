@@ -6,11 +6,11 @@ import useAuth from "../hooks/useAuth";
 const Main = () => {
   const location = useLocation();
   const [showComponents, setShowComponents] = useState(false);
-  const { showSidebar, setShowSidebar } = useAuth();
+  const { showSidebar, setShowSidebar, setUserDropDownOpen } = useAuth();
   useEffect(() => {
     if (location?.pathname === "/" || location?.pathname === "/signup") {
       setShowComponents(false);
-      setShowSidebar(false)
+      setShowSidebar(false);
     } else {
       setShowComponents(true);
     }
@@ -20,9 +20,13 @@ const Main = () => {
       <div className={showSidebar ? "w-64" : ""}>
         {showComponents && showSidebar ? <Sidebar /> : ""}
       </div>
-      <div className='flex-1 bg-[#EEF2F5] dark:bg-gray-900'>
+      <div className='flex-1'>
         <div>{showComponents && <Navbar />}</div>
+        <div
+          onClick={() => setUserDropDownOpen(false)}
+          className=' min-h-[calc(100vh-93px)] w-full bg-[#EEF2F5] dark:bg-gray-900 '>
           <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -5,11 +5,11 @@ const UserMenuDropdown = () => {
   const { userDropDownOpen, setUserDropDownOpen, user } = useAuth();
 
   return (
-    <div className='relative inline-block'>
+    <div className='relative inline-block focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring'>
       {/* UserMenuDropdown toggle button */}
       <button
         onClick={() => setUserDropDownOpen(!userDropDownOpen)}
-        className='relative z-10 flex items-center p-x-2 text-sm text-gray-600 bg-white border border-transparent rounded-t-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none'>
+        className='relative z-10 flex items-center p-x-2 text-sm text-gray-600 bg-white border border-transparent rounded-t-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 dark:text-white dark:bg-gray-800 focus:outline-none'>
         <span>
           <a
             href='#'
@@ -23,7 +23,7 @@ const UserMenuDropdown = () => {
               <h1 className='text-sm font-semibold text-gray-700 dark:text-gray-200'>
                 {user?.displayName}
               </h1>
-              <p className='text-sm text-gray-500 dark:text-gray-400'>
+              <p className='text-sm text-gray-900 dark:text-gray-200'>
                 {user?.email}
               </p>
             </div>
