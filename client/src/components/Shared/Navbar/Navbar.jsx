@@ -8,7 +8,7 @@ import ThemeToggle from "../../ThemeToggle/ThemeToggle";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   return (
-    <div className='w-full bg-white dark:bg-gray-800 z-10 shadow-sm'>
+    <div className='w-full bg-white dark:bg-gray-600 z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
@@ -30,7 +30,9 @@ const Navbar = () => {
                         <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
                           <CiLogin className='text-2xl' />
                         </span>
-                        <ThemeToggle />
+                        <span className='text-[#152A16]'>
+                          <ThemeToggle />
+                        </span>
                       </div>
                     </div>
                   </div>

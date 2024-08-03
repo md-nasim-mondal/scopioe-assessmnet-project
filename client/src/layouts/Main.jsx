@@ -14,7 +14,8 @@ const Main = () => {
     } else {
       setShowComponents(true);
     }
-  }, [location?.pathname]);
+  }, [location?.pathname, setShowSidebar]);
+  
   return (
     <div className='min-h-screen flex '>
       <div className={showSidebar ? "w-64" : ""}>
@@ -24,7 +25,7 @@ const Main = () => {
         <div>{showComponents && <Navbar />}</div>
         <div
           onClick={() => setUserDropDownOpen(false)}
-          className=' min-h-[calc(100vh-93px)] w-full bg-[#EEF2F5] dark:bg-gray-900 '>
+          className=' min-h-[calc(100vh-93px)] w-full p-10 bg-[#EEF2F5] dark:bg-gray-900 '>
           <Outlet />
         </div>
       </div>

@@ -12,13 +12,13 @@ import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Sidebar = () => {
-  const {isLoading, showSidebar } = useAuth();
+  const { isLoading, showSidebar } = useAuth();
   const [isActive, setActive] = useState(false);
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
-  
+
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -36,7 +36,7 @@ const Sidebar = () => {
       <div
         className={`z-10 md:fixed flex flex-col justify-start overflow-x-hidden w-64 space-y-6 px-2 py-4 ${
           !showSidebar && "hidden"
-        }  transition duration-200 ease-in-out border-r dark:border-gray-100 bg-white dark:bg-gray-800 min-h-screen`}>
+        }  transition duration-200 ease-in-out border-r dark:border-gray-100 bg-white dark:bg-gray-600 min-h-screen`}>
         <div>
           <div>
             <div className='w-full hidden md:flex px-4 py-2  rounded-lg justify-center items-center mx-auto'>
