@@ -153,7 +153,6 @@ const Login = () => {
                 type='checkbox'
                 name='terms'
                 className='w-3 h-3 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300'
-                required
               />
               <label htmlFor='terms' className='ms-1 text-sm'>
                 Remember Me

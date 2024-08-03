@@ -1,6 +1,8 @@
 import Container from "../Container";
 import useAuth from "../../../hooks/useAuth";
 import UserMenuDropdown from "../../Dropdown/UserMenuDropdown";
+import { CiLogin } from "react-icons/ci";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -13,20 +15,25 @@ const Navbar = () => {
             <div>{user && <UserMenuDropdown />}</div>
 
             <div>
-              <div className='flex flex-row items-center gap-3'>
-                <div>
-                  <span></span>
-                </div>
-                <div>
-
-                  {user && <>
-                    <div>
-                      <span onClick={logOut}>Log Out</span>
-                      <span></span>
+              {user && (
+                <>
+                  <div className='flex flex-row items-center gap-3'>
+                    <div className='border-r-2 pr-6'>
+                      <span>
+                        <IoNotificationsOutline className='text-2xl w-12 h-12 border rounded-full p-2' />
+                      </span>
                     </div>
-                </>}
-                </div>
-              </div>
+                    <div>
+                      <div className='flex items-center text-[#F15E4A] gap-4 font-semibold'>
+                        <span onClick={logOut}>Log Out</span>
+                        <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
+                          <CiLogin className='text-2xl' />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </Container>
