@@ -78,7 +78,7 @@ const TherapistSlider = () => {
   }, []);
 
   function getSlidesToShow(width) {
-    if (width >= 1536) {
+    if (width >= 1600) {
       return 4;
     } else if (width >= 1024) {
       return 3;
@@ -128,7 +128,7 @@ const TherapistSlider = () => {
                     <FaCar /> {therapist.service}
                   </p>
                 </div>
-                <button className='bg-blue-200 dark:bg-blue-300 hover:text-white px-4 py-2 rounded-b hover:bg-blue-600 hover:dark:bg-blue-700 w-full h-[45px] underline hover:dark:text-[#152A16]'>
+                <button className='bg-blue-200 dark:bg-blue-300 hover:text-white px-4 py-2 rounded-b hover:bg-[#156BCA] hover:dark:bg-blue-700 w-full h-[45px] underline hover:dark:text-[#152A16]'>
                   See Details
                 </button>
               </SwiperSlide>

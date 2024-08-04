@@ -42,7 +42,7 @@ const Drawer = () => {
         tabIndex='-1'
         aria-labelledby='drawer-right-label'>
         <div className='flex flex-col justify-between min-h-[70vh]'>
-          <div className='flex-1 flex flex-col justify-end bg-blue-600 relative'>
+          <div className='flex-1 flex flex-col justify-end bg-[#156BCA] relative'>
             <div
               onClick={() => setIsOpen(false)}
               className='text-3xl pl-5 pt-5 text-white'>

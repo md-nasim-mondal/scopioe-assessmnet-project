@@ -55,11 +55,11 @@ const TestimonialSlider = () => {
   const testimonialPairs = createPairs(testimonials);
 
   return (
-    <section className='mt-4 mx-auto relative max-w-full overflow-hidden'>
+    <div className='mt-4 mx-auto relative max-w-2xl md:max-w-4xl lg:max-w-2xl overflow-hidden'>
       <h1 className='text-[#152A16] font-medium text-lg mb-4 dark:text-white '>
         Featured Testimonial
       </h1>
-      <div className='max-w-xl mx-auto px-4'>
+      <div className='max-w-2xl md:max-w-4xl lg:max-w-2xl mx-auto'>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -71,10 +71,10 @@ const TestimonialSlider = () => {
           className='mySwiper'>
           {testimonialPairs.map((pair, index) => (
             <SwiperSlide key={index}>
-              <div className='w-full flex flex-col space-y-4 bg-white dark:bg-gray-600 p-4 md:p-8 rounded-xl'>
+              <div className='w-full flex flex-col space-y-4  lg:min-h-[550px] bg-white dark:bg-gray-600 p-4 md:p-8 rounded-xl'>
                 {pair.map((testimonial, subIndex) => (
                   <div key={subIndex} className='w-full mx-auto'>
-                    <div className='flex flex-col md:flex-row items-center gap-4 p-4 md:p-6 bg-white dark:bg-gray-600 rounded-lg mb-4 border-2 border-gray-100'>
+                    <div className='flex flex-row items-center gap-4 p-4 md:p-6 bg-white dark:bg-gray-600 rounded-lg mb-4 border-2 border-gray-100'>
                       <div className='w-[100px] h-[100px] md:w-[130px] md:h-[140px] rounded-md overflow-hidden'>
                         <img
                           className='w-full h-full object-cover'
@@ -111,7 +111,7 @@ const TestimonialSlider = () => {
         {/* Custom Pagination */}
         <div className='custom-pagination'></div>
       </div>
-    </section>
+    </div>
   );
 };
 

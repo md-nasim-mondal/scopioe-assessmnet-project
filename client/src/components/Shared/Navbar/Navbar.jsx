@@ -71,8 +71,8 @@ const Navbar = () => {
                         <div
                           onClick={logOut}
                           className='flex items-center gap-4'>
-                          <span>Log Out</span>
-                          <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
+                          <span className="text-lg">Log Out</span>
+                          <span className='bg-[#FFECEA] p-2 rounded-full w-12 h-12 flex items-center'>
                             <CiLogin className='text-2xl' />
                           </span>
                         </div>
