@@ -19,7 +19,6 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  // const axiosCommon = useAxiosCommon();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
@@ -27,10 +26,14 @@ const AuthProvider = ({ children }) => {
   const [smallDevice, setSmallDevice] = useState(window.innerWidth < 500);
   useEffect(() => {
     const handleResize = () => {
-      setSmallDevice(window.innerWidth < 500);
+      if (window.innerWidth > 500) {
+        setSmallDevice(false);
+      } else {
+        setSmallDevice(true);
+      }
     };
-
     window.addEventListener("resize", handleResize);
+    handleResize();
 
     // Cleanup the event listener on component unmount
     return () => {

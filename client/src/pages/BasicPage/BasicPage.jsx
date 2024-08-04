@@ -4,11 +4,7 @@ import useAuth from "../../hooks/useAuth";
 
 const BasicPage = () => {
   const { smallDevice } = useAuth();
-  if (smallDevice) {
-    return <ResponsiveHome />;
-  } else {
-    return <Login />;
-  }
+  return smallDevice ? <ResponsiveHome/> : <Login/>
 };
 
 export default BasicPage;
