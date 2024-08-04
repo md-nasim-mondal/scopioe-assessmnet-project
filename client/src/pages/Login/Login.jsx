@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import img from "../../assets/images/contentBg1.png";
 import responsiveBgImg from "../../assets/images/responsiveBg.png";
+import Slider from "../../components/Slider/Slider";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -337,8 +337,8 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <div className='rounded-2xl w-[90%] max-w-[648px] max-h-[802px] lg:mr-auto'>
-        <img src={img} alt='' className=' w-full max-w-[648px] max-h-[802px]' />
+      <div className='max-w-3xl lg:mr-auto'>
+        <Slider initialSlide={1} />
       </div>
     </div>
   );
