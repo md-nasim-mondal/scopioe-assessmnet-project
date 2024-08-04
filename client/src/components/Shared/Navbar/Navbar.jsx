@@ -4,9 +4,13 @@ import UserMenuDropdown from "../../Dropdown/UserMenuDropdown";
 import { CiLogin } from "react-icons/ci";
 import { IoNotificationsOutline } from "react-icons/io5";
 import ThemeToggle from "../../ThemeToggle/ThemeToggle";
+import { AiOutlineBars } from "react-icons/ai";
+import Drawer from "../../Home/Drawer/Drawer";
 
 const Navbar = () => {
   const { user, logOut, smallDevice } = useAuth();
+
+  console.log(smallDevice);
 
   if (smallDevice) {
     return (
@@ -15,7 +19,7 @@ const Navbar = () => {
           <Container>
             <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
               {/* User Menu Drop Down */}
-              <div>{user && <UserMenuDropdown />}</div>
+              {/* <div>{user && <UserMenuDropdown />}</div> */}
 
               <div>
                 {user && (
@@ -28,10 +32,17 @@ const Navbar = () => {
                       </div>
                       <div>
                         <div className='flex items-center text-[#F15E4A] gap-4 font-semibold'>
-                          <span onClick={logOut}>Log Out</span>
-                          <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
-                            <CiLogin className='text-2xl' />
-                          </span>
+                          {/* Small Screen Navbar */}
+                          <div className='flex justify-between '>
+                            <button
+                              // onClick={handleToggle}
+                              className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'>
+                              <AiOutlineBars className='h-5 w-5' />
+                            </button>
+                          </div>
+
+                          <Drawer/>
+
                           <span className='text-[#152A16]'>
                             <ThemeToggle />
                           </span>
@@ -66,10 +77,14 @@ const Navbar = () => {
                     </div>
                     <div>
                       <div className='flex items-center text-[#F15E4A] gap-4 font-semibold'>
-                        <span onClick={logOut}>Log Out</span>
-                        <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
-                          <CiLogin className='text-2xl' />
-                        </span>
+                        <div
+                          onClick={logOut}
+                          className='flex items-center gap-4'>
+                          <span>Log Out</span>
+                          <span className='bg-[#FFECEA] p-2 rounded-full w-10 h-10'>
+                            <CiLogin className='text-2xl' />
+                          </span>
+                        </div>
                         <span className='text-[#152A16]'>
                           <ThemeToggle />
                         </span>

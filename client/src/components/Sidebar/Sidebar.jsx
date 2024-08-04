@@ -11,21 +11,12 @@ import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Sidebar = () => {
-  const { isLoading, showSidebar } = useAuth();
+  const { loading, showSidebar } = useAuth();
 
-  if (isLoading) return <LoadingSpinner />;
+  if (loading) return <LoadingSpinner />;
 
   return (
     <>
-      {/* Small Screen Navbar */}
-      {/* <div className='flex justify-between '>
-        <button
-          onClick={handleToggle}
-          className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'>
-          <AiOutlineBars className='h-5 w-5' />
-        </button>
-      </div> */}
-
       {/* Sidebar */}
       <div
         className={`z-10 hidden lg:flex flex-col justify-start overflow-x-hidden w-52 space-y-6 px-2 py-4 ${

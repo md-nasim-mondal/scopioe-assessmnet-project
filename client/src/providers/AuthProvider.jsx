@@ -23,16 +23,18 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [userDropDownOpen, setUserDropDownOpen] = useState(false);
-  const [smallDevice, setSmallDevice] = useState(window.innerWidth < 500);
+  const [smallDevice, setSmallDevice] = useState(window.innerWidth < 768);
+
+  console.log(window.innerWidth);
+
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 500) {
-        setSmallDevice(false);
-      } else {
-        setSmallDevice(true);
-      }
+      setSmallDevice(window.innerWidth < 768);
     };
+
     window.addEventListener("resize", handleResize);
+
+    // Initial check
     handleResize();
 
     // Cleanup the event listener on component unmount

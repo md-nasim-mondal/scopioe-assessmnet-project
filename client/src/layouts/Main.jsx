@@ -17,6 +17,7 @@ const Main = () => {
       setShowSidebar(false);
     } else {
       setShowComponents(true);
+      setShowSidebar(true);
     }
   }, [location?.pathname, setShowSidebar]);
 

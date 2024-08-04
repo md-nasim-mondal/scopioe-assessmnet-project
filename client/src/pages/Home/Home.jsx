@@ -18,7 +18,6 @@ const Home = () => {
       <section className="flex justify-between items-center">
         {/* Testimonial Slider Section */}
         <TestimonialSlider />
-        {/* <TestimonialSlider /> */}
       </section>
     </div>
   );
