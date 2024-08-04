@@ -3,8 +3,8 @@ import Main from "../layouts/Main";
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
 import SignUp from "../pages/SignUp/SignUp";
-import ResponsiveLogin from "../pages/ResponsiveLogin/ResponsiveLogin";
-import ResponsiveRoutes from "./ResponsiveRoutes"; // Adjust the import path accordingly
+import BasicPage from "../pages/BasicPage/BasicPage";
+import Login from "../pages/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <ResponsiveRoutes />,
+        element: <BasicPage />,
       },
       {
         path: "home",
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <ResponsiveLogin />,
+        element: <Login />,
       },
     ],
   },
