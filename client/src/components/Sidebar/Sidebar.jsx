@@ -8,13 +8,9 @@ import { MdOutlineHelpCenter } from "react-icons/md";
 import { Link } from "react-router-dom";
 import MenuItem from "./Menu/MenuItem";
 import useAuth from "../../hooks/useAuth";
-import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Sidebar = () => {
-  const { loading, showSidebar } = useAuth();
-
-  if (loading) return <LoadingSpinner />;
-
+  const {  showSidebar } = useAuth();
   return (
     <>
       {/* Sidebar */}

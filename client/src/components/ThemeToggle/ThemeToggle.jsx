@@ -34,7 +34,7 @@ const ThemeToggle = () => {
       className='p-0.5 rounded-full border-4 border-current dark:text-white'>
       <svg
         id='theme-toggle-dark-icon'
-        className={`w-6 h-6 ${isDarkMode ? "hidden" : ""}`}
+        className={`w-10 h-10 ${isDarkMode ? "hidden" : ""}`}
         fill='none'
         stroke='currentColor'
         viewBox='0 0 24 24'
@@ -47,7 +47,7 @@ const ThemeToggle = () => {
       </svg>
       <svg
         id='theme-toggle-light-icon'
-        className={`w-6 h-6 ${isDarkMode ? "" : "hidden"}`}
+        className={`w-10 h-10 ${isDarkMode ? "" : "hidden"}`}
         fill='none'
         stroke='currentColor'
         viewBox='0 0 24 24'

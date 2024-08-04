@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [userDropDownOpen, setUserDropDownOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [smallDevice, setSmallDevice] = useState(window.innerWidth < 768);
 
   console.log(window.innerWidth);
@@ -137,6 +138,8 @@ const AuthProvider = ({ children }) => {
     setUserDropDownOpen,
     smallDevice,
     setSmallDevice,
+    isOpen,
+    setIsOpen,
   };
 
   return (

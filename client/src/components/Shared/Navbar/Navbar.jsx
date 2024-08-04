@@ -4,13 +4,10 @@ import UserMenuDropdown from "../../Dropdown/UserMenuDropdown";
 import { CiLogin } from "react-icons/ci";
 import { IoNotificationsOutline } from "react-icons/io5";
 import ThemeToggle from "../../ThemeToggle/ThemeToggle";
-import { AiOutlineBars } from "react-icons/ai";
 import Drawer from "../../Home/Drawer/Drawer";
 
 const Navbar = () => {
   const { user, logOut, smallDevice } = useAuth();
-
-  console.log(smallDevice);
 
   if (smallDevice) {
     return (
@@ -20,6 +17,10 @@ const Navbar = () => {
             <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
               {/* User Menu Drop Down */}
               {/* <div>{user && <UserMenuDropdown />}</div> */}
+
+              <h1 className='my-5 text-[40px] font-medium text-[#4285F3] text-center'>
+                LOGO
+              </h1>
 
               <div>
                 {user && (
@@ -31,18 +32,8 @@ const Navbar = () => {
                         </span>
                       </div>
                       <div>
-                        <div className='flex items-center text-[#F15E4A] gap-4 font-semibold'>
-                          {/* Small Screen Navbar */}
-                          <div className='flex justify-between '>
-                            <button
-                              // onClick={handleToggle}
-                              className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'>
-                              <AiOutlineBars className='h-5 w-5' />
-                            </button>
-                          </div>
-
-                          <Drawer/>
-
+                        <div className='flex items-center gap-4 font-semibold'>
+                          <Drawer />
                           <span className='text-[#152A16]'>
                             <ThemeToggle />
                           </span>

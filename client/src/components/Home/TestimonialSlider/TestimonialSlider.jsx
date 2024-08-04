@@ -56,8 +56,8 @@ const TestimonialSlider = () => {
 
   return (
     <section className='mt-4 mx-auto relative max-w-full overflow-hidden'>
-      <h1 className='text-[#152A16] font-medium text-lg mb-4 dark:text-white text-center'>
-        Featured Therapist
+      <h1 className='text-[#152A16] font-medium text-lg mb-4 dark:text-white '>
+        Featured Testimonial
       </h1>
       <div className='max-w-xl mx-auto px-4'>
         <Swiper

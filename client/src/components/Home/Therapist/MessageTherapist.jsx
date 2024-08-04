@@ -4,7 +4,7 @@ import vectorImg from "../../../assets/images/vector.png";
 
 const MessageTherapist = () => {
   return (
-    <section className='bg-white dark:bg-gray-600 py-8 rounded-xl dark:text-white'>
+    <section className='bg-white dark:bg-gray-600 py-8 rounded-xl dark:text-white flex flex-col md:block'>
       <Container>
         <div className='flex justify-between md:items-center relative gap-8 flex-col lg:flex-row'>
           <div className='space-y-6'>
