@@ -71,10 +71,10 @@ const TestimonialSlider = () => {
           className='mySwiper'>
           {testimonialPairs.map((pair, index) => (
             <SwiperSlide key={index}>
-              <div className='w-full flex flex-col space-y-4 bg-white p-8 rounded-xl'>
+              <div className='w-full flex flex-col space-y-4 bg-white dark:bg-gray-600 p-8 rounded-xl'>
                 {pair.map((testimonial, subIndex) => (
                   <div key={subIndex} className='w-full md:max-w-lg mx-auto'>
-                    <div className='flex items-center gap-4 p-6 bg-white rounded-lg mb-4 border-2 border-gray-100'>
+                    <div className='flex items-center gap-4 p-6 bg-white dark:bg-gray-600 rounded-lg mb-4 border-2 border-gray-100'>
                       <div className='w-[130px] h-[140px] rounded-md'>
                         <img
                           className='w-[130px] h-[140px] rounded-md'
@@ -92,7 +92,7 @@ const TestimonialSlider = () => {
                             {testimonial.author}
                           </span>
                         </h3>
-                        <p className='mt-2 text-gray-700'>
+                        <p className='mt-2 text-[#5C635A] dark:text-white'>
                           {testimonial.text}{" "}
                           <a href='#' className='text-blue-500 underline'>
                             Read More
