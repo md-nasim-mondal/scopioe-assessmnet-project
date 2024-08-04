@@ -213,8 +213,8 @@ const Login = () => {
   }
 
   return (
-    <div className='flex flex-col lg:flex-row justify-center items-center min-h-screen gap-24 bg-white'>
-      <div className='flex flex-col lg:min-w-[428px] max-w-md p-2'>
+    <div className='flex flex-col lg:flex-row justify-center items-center min-h-screen xl:gap-24 gap-16 lg:gap-20 bg-white p-8'>
+      <div className='flex flex-col lg:min-w-[428px] max-w-md p-2 ml-auto'>
         <div className='mb-8 text-start'>
           <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>
           <h1 className='my-3 text-3xl font-bold'>Log In To Your Account</h1>
@@ -337,8 +337,8 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <div className='rounded-2xl max-w-[648px] max-h-[802px]'>
-        <img src={img} alt='' className='max-w-[648px] max-h-[802px]' />
+      <div className='rounded-2xl w-[90%] max-w-[648px] max-h-[802px] mr-auto'>
+        <img src={img} alt='' className=' w-full max-w-[648px] max-h-[802px]' />
       </div>
     </div>
   );
