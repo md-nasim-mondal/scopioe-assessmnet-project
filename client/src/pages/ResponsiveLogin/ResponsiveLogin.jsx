@@ -337,8 +337,8 @@ const ResponsiveLogin = () => {
           </Link>
         </p>
       </div>
-      <div className='bg-gray-500'>
-        <img src={img} alt='' />
+      <div className='rounded-2xl max-w-[648px] max-h-[802px]'>
+        <img src={img} alt='' className='max-w-[648px] max-h-[802px]' />
       </div>
     </div>
   );
