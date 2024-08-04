@@ -3,13 +3,27 @@ import useAuth from "./../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import img from "../../assets/images/contentBg1.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { imageUpload } from "../../api/utils";
+import responsiveBgImg from "../../assets/images/responsiveBg.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [smallDevice, setSmallDevice] = useState(window.innerWidth < 768);
+  useEffect(() => {
+    const handleResize = () => {
+      setSmallDevice(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const from = location?.state || "/home";
   const { createUser, updateUserProfile, loading, setLoading, setUser } =
     useAuth();
@@ -61,6 +75,175 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+
+  if (smallDevice) {
+    return (
+      <div className='relative'>
+        <div className='relative'>
+          <img src={responsiveBgImg} alt='' className='w-full h-full' />
+          <div className='absolute top-[4%] w-full'>
+            <h1 className='my-4 text-[40px] font-medium text-[#4285F3] text-center'>LOGO</h1>
+            <div className="text-center w-full text-white text-lg ">
+            <p className="font-semibold leading-7">Create Account</p>
+            <p className="font-medium leading-7">Fill In Your Information</p>
+            </div>
+          </div>
+        </div>
+        <div className='absolute bottom-0 bg-white w-full p-4 rounded-2xl'>
+          <h1 className='text-center my-3 text-[#1A2531] text-3xl font-semibold'>
+            Sign In
+          </h1>
+          <form onSubmit={handleSubmit} className='space-y-8'>
+            <div className='space-y-4'>
+              <div>
+                <label
+                  htmlFor='name'
+                  className='block mb-2  text-[#152A16] font-semibold'>
+                  Name
+                </label>
+                <input
+                  type='text'
+                  name='name'
+                  id='name'
+                  placeholder='@username'
+                  required
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
+                  data-temp-mail-org='0'
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor='email'
+                  className='block mb-2 text-[#152A16] font-semibold'>
+                  Email address
+                </label>
+                <input
+                  type='email'
+                  name='email'
+                  id='email'
+                  required
+                  placeholder='Enter your email'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
+                  data-temp-mail-org='0'
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor='image'
+                  className='block mb-2 text-[#152A16] font-semibold'>
+                  Select Image:
+                </label>
+                <input
+                  required
+                  type='file'
+                  id='image'
+                  name='image'
+                  accept='image/*'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
+                />
+              </div>
+
+              <div className='relative'>
+                <div className='flex justify-between'>
+                  <label
+                    htmlFor='password'
+                    className='mb-2 text-[#152A16] font-semibold'>
+                    Password
+                  </label>
+                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name='password'
+                  autoComplete='new-password'
+                  id='password'
+                  required
+                  placeholder='Enter your password'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
+                />
+                <div
+                  onClick={() => setShowPassword(!showPassword)}
+                  className='absolute right-[3%] top-[58%]'>
+                  {showPassword ? (
+                    <IoEyeOutline className='text-xl' />
+                  ) : (
+                    <IoEyeOffOutline className='text-xl' />
+                  )}
+                </div>
+              </div>
+
+              <div className='relative'>
+                <div className='flex justify-between'>
+                  <label
+                    htmlFor='confirmPassword'
+                    className=' mb-2 text-[#152A16] font-semibold'>
+                    Confirm Password
+                  </label>
+                </div>
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  name='confirmPassword'
+                  autoComplete='new-password'
+                  id='confirmPassword'
+                  required
+                  placeholder='Re-type Password'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500'
+                />
+                <div
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className='absolute right-[3%] top-[58%]'>
+                  {showConfirmPassword ? (
+                    <IoEyeOutline className='text-xl' />
+                  ) : (
+                    <IoEyeOffOutline className='text-xl' />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className='flex items-start mb-5'>
+              <div className='flex items-center h-5'>
+                <input
+                  id='terms'
+                  type='checkbox'
+                  name='terms'
+                  className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300'
+                  required
+                />
+                <label htmlFor='terms' className='ms-2 text-[#4285F3]'>
+                  <a href='#' className='hover:underline'>
+                    Accept Terms of Services
+                  </a>
+                </label>
+              </div>
+            </div>
+
+            <div className='text-center'>
+              <button
+                disabled={loading}
+                type='submit'
+                className='bg-[#4285F3] w-[60%] rounded-lg py-3 text-white disabled:cursor-not-allowed cursor-pointer'>
+                {loading ? (
+                  <TbFidgetSpinner className='animate-spin m-auto' />
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
+            </div>
+          </form>
+          <p className='px-6 py-3  text-center text-[#152A16] font-medium'>
+            Already Have an Account?{" "}
+            <Link
+              to='/'
+              className='underline hover:text-rose-500 text-[#4285F3]'>
+              Login
+            </Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='flex justify-center items-center min-h-screen mx-auto gap-24 bg-white'>

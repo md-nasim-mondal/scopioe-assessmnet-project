@@ -5,16 +5,21 @@ import TestimonialSlider from "../../components/Home/TestimonialSlider/Testimoni
 
 const Home = () => {
   return (
-    <div className="p-10">
+    <div className='p-10'>
       <Helmet>
         <title>Scopioe Assessment | Home</title>
       </Helmet>
 
+      {/* Message Therapist Section */}
       <MessageTherapist />
-      
+
+      {/* Therapist Slider Section */}
       <TherapistSlider />
-      
-      <TestimonialSlider/>
+      <section className="flex justify-between items-center">
+        {/* Testimonial Slider Section */}
+        <TestimonialSlider />
+        {/* <TestimonialSlider /> */}
+      </section>
     </div>
   );
 };
