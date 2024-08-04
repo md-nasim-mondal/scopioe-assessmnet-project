@@ -240,10 +240,12 @@ const SignUp = () => {
         <div className='mb-8 text-start'>
           <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>
           <h1 className='my-3 text-3xl font-bold'>Sign Up To Your Account</h1>
-          <p className=''>
+          <p className='text-lg'>
             Welcome Back! By click the sign up button, you&apos;re agree to
             Zenitood Terms and Service and acknowledge the{" "}
-            <span className='text-[#4285F3] underline'>Privacy and Policy</span>
+            <span className='text-[#4285F3] underline'>
+              <a href='#'>Privacy and Policy</a>
+            </span>
           </p>
         </div>
         <form onSubmit={handleSubmit} className='space-y-8'>
