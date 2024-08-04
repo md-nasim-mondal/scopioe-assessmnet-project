@@ -3,7 +3,7 @@ import useAuth from "./../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import img from "../../assets/images/contentBg1.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { imageUpload } from "../../api/utils";
 import responsiveBgImg from "../../assets/images/responsiveBg.png";
@@ -11,22 +11,9 @@ import responsiveBgImg from "../../assets/images/responsiveBg.png";
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [smallDevice, setSmallDevice] = useState(window.innerWidth < 768);
-  useEffect(() => {
-    const handleResize = () => {
-      setSmallDevice(window.innerWidth < 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   const from = location?.state || "/home";
-  const { createUser, updateUserProfile, loading, setLoading, setUser } =
-    useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { createUser, updateUserProfile, setUser, smallDevice } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -53,7 +40,7 @@ const SignUp = () => {
     }
 
     try {
-      setLoading(true);
+      setIsLoading(true);
       // 1. Upload image and get image url
       const image_url = await imageUpload(image);
 
@@ -68,11 +55,11 @@ const SignUp = () => {
 
       navigate(from);
       toast.success("SignUp Successful");
-      setLoading(false);
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
       toast.error(err.message);
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -82,16 +69,18 @@ const SignUp = () => {
         <div className='relative'>
           <img src={responsiveBgImg} alt='' className='w-full h-full' />
           <div className='absolute top-[4%] w-full'>
-            <h1 className='my-4 text-[40px] font-medium text-[#4285F3] text-center'>LOGO</h1>
-            <div className="text-center w-full text-white text-lg ">
-            <p className="font-semibold leading-7">Create Account</p>
-            <p className="font-medium leading-7">Fill In Your Information</p>
+            <h1 className='my-4 text-[40px] font-medium text-[#4285F3] text-center'>
+              LOGO
+            </h1>
+            <div className='text-center w-full text-white text-lg '>
+              <p className='font-semibold leading-7'>Create Account</p>
+              <p className='font-medium leading-7'>Fill In Your Information</p>
             </div>
           </div>
         </div>
         <div className='absolute bottom-0 bg-white w-full p-4 rounded-2xl'>
           <h1 className='text-center my-3 text-[#1A2531] text-3xl font-semibold'>
-            Sign In
+            Sign Up
           </h1>
           <form onSubmit={handleSubmit} className='space-y-8'>
             <div className='space-y-4'>
@@ -221,10 +210,10 @@ const SignUp = () => {
 
             <div className='text-center'>
               <button
-                disabled={loading}
+                disabled={isLoading}
                 type='submit'
                 className='bg-[#4285F3] w-[60%] rounded-lg py-3 text-white disabled:cursor-not-allowed cursor-pointer'>
-                {loading ? (
+                {isLoading ? (
                   <TbFidgetSpinner className='animate-spin m-auto' />
                 ) : (
                   "Sign Up"
@@ -235,7 +224,7 @@ const SignUp = () => {
           <p className='px-6 py-3  text-center text-[#152A16] font-medium'>
             Already Have an Account?{" "}
             <Link
-              to='/'
+              to='/login'
               className='underline hover:text-rose-500 text-[#4285F3]'>
               Login
             </Link>
@@ -246,7 +235,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className='flex justify-center items-center min-h-screen mx-auto gap-24 bg-white'>
+    <div className='flex flex-col lg:flex-row justify-center items-center min-h-screen mx-auto gap-24 bg-white'>
       <div className='flex flex-col max-w-md p-6 rounded-md'>
         <div className='mb-8 text-start'>
           <h1 className='my-3 text-4xl font-medium text-[#4285F3]'>LOGO</h1>
@@ -385,10 +374,10 @@ const SignUp = () => {
 
           <div className='text-center'>
             <button
-              disabled={loading}
+              disabled={isLoading}
               type='submit'
               className='bg-[#4285F3] w-[60%] rounded-lg py-3 text-white disabled:cursor-not-allowed cursor-pointer'>
-              {loading ? (
+              {isLoading ? (
                 <TbFidgetSpinner className='animate-spin m-auto' />
               ) : (
                 "Sign Up"

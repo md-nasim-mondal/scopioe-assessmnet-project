@@ -24,6 +24,19 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [userDropDownOpen, setUserDropDownOpen] = useState(false);
+  const [smallDevice, setSmallDevice] = useState(window.innerWidth < 500);
+  useEffect(() => {
+    const handleResize = () => {
+      setSmallDevice(window.innerWidth < 500);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -117,6 +130,8 @@ const AuthProvider = ({ children }) => {
     setShowSidebar,
     userDropDownOpen,
     setUserDropDownOpen,
+    smallDevice,
+    setSmallDevice,
   };
 
   return (

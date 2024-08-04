@@ -10,7 +10,8 @@ const Main = () => {
   useEffect(() => {
     if (
       location?.pathname === "/" ||
-      location?.pathname.toLowerCase() === "/signup"
+      location?.pathname.toLowerCase() === "/signup" ||
+      location?.pathname.toLowerCase() === "/login"
     ) {
       setShowComponents(false);
       setShowSidebar(false);

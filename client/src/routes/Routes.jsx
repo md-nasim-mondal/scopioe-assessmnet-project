@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import ResponsiveHome from "../pages/ResponsiveHome/ResponsiveHome";
+import ResponsiveLogin from "../pages/ResponsiveLogin/ResponsiveLogin";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +15,9 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Login />,
+        element: (
+          <>{window.innerWidth > 500 ? <Login /> : <ResponsiveHome />}</>
+        ),
       },
       {
         path: "home",
@@ -22,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
+      },
+      {
+        path: "login",
+        element: <ResponsiveLogin />,
       },
     ],
   },
