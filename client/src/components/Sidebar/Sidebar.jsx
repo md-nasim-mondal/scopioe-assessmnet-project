@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import { GoPeople } from "react-icons/go";
@@ -13,11 +12,6 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Sidebar = () => {
   const { isLoading, showSidebar } = useAuth();
-  const [isActive, setActive] = useState(false);
-  // Sidebar Responsive Handler
-  const handleToggle = () => {
-    setActive(!isActive);
-  };
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -34,7 +28,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-start overflow-x-hidden w-64 space-y-6 px-2 py-4 ${
+        className={`z-10 hidden lg:flex flex-col justify-start overflow-x-hidden w-52 space-y-6 px-2 py-4 ${
           !showSidebar && "hidden"
         }  transition duration-200 ease-in-out border-r dark:border-gray-100 bg-white dark:bg-gray-600 min-h-screen`}>
         <div>

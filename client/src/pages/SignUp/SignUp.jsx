@@ -33,7 +33,9 @@ const SignUp = () => {
       return toast.error("Please accept our terms of service!");
     }
     if (password !== confirmPassword) {
-      return toast.error("Didn't match your confirm password! Please try again!");
+      return toast.error(
+        "Didn't match your confirm password! Please try again!"
+      );
     }
 
     try {
@@ -213,9 +215,7 @@ const SignUp = () => {
         </form>
         <p className='px-6 py-3  text-center text-[#152A16] font-medium'>
           Already Have an Account?{" "}
-          <Link
-            to='/'
-            className='underline hover:text-rose-500 text-[#4285F3]'>
+          <Link to='/' className='underline hover:text-rose-500 text-[#4285F3]'>
             Login
           </Link>
         </p>

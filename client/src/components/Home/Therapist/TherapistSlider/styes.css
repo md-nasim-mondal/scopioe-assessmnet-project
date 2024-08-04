@@ -1,0 +1,58 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Customize navigation buttons */
+.custom-next {
+  right: 1%; /* Move the button outside the container */
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+}
+
+.custom-prev {
+  left: 1%; /* Move the button outside the container */
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+}
+
+/* Additional styles for better button visibility */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #152A16; /* Change button color */
+  font-weight: 600px;
+  background: blue; /* Semi-transparent background */
+  border-radius: 50%; /* Round buttons */
+  width: 45px; /* Adjust button size */
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px; /* Adjust arrow size */
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  color: #152A16;
+  background: #93c5fd; /* Disabled button background color */
+}
+
+.swiper-button-next:not(.swiper-button-disabled),
+.swiper-button-prev:not(.swiper-button-disabled) {
+  color: white;
+  background: #1d4ed8; /* Active button background color */
+}

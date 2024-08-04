@@ -8,24 +8,27 @@ const Main = () => {
   const [showComponents, setShowComponents] = useState(false);
   const { showSidebar, setShowSidebar, setUserDropDownOpen } = useAuth();
   useEffect(() => {
-    if (location?.pathname === "/" || location?.pathname === "/signup") {
+    if (
+      location?.pathname === "/" ||
+      location?.pathname.toLowerCase() === "/signup"
+    ) {
       setShowComponents(false);
       setShowSidebar(false);
     } else {
       setShowComponents(true);
     }
   }, [location?.pathname, setShowSidebar]);
-  
+
   return (
     <div className='min-h-screen flex '>
-      <div className={showSidebar ? "w-64" : ""}>
+      <div className={showSidebar ? "lg:w-52 " : ""}>
         {showComponents && showSidebar ? <Sidebar /> : ""}
       </div>
       <div className='flex-1'>
         <div>{showComponents && <Navbar />}</div>
         <div
           onClick={() => setUserDropDownOpen(false)}
-          className=' min-h-[calc(100vh-93px)] w-full p-10 bg-[#EEF2F5] dark:bg-gray-900 '>
+          className={`min-h-[calc(100vh-93px)] w-full bg-[#EEF2F5] dark:bg-gray-900 `}>
           <Outlet />
         </div>
       </div>
