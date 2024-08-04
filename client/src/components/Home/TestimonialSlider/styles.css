@@ -1,0 +1,15 @@
+.custom-pagination {
+  text-align: center;
+  margin-top: 20px; /* Adjust spacing from the slider */
+}
+
+.custom-pagination-bullet {
+  background: #007bff; /* Change to your preferred color */
+  margin: 0 5px; /* Adjusts the horizontal spacing between bullets */
+  width: 12px; /* Optional: Change the width of the bullets */
+  height: 12px; /* Optional: Change the height of the bullets */
+}
+
+.custom-pagination-bullet-active {
+  background: #0056b3; /* Active bullet color */
+}
