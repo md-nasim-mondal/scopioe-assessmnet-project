@@ -53,6 +53,9 @@ async function run() {
   try {
     const db = client.db("scopioeAssessmentDB");
     const usersCollection = db.collection("users");
+    const therapistsCollection = db.collection("therapists");
+    const citiesCollection = db.collection("cities");
+    const testimonialsCollection = db.collection("testimonials");
 
     // auth related api
     app.post("/jwt", async (req, res) => {
@@ -106,6 +109,29 @@ async function run() {
       const result = await usersCollection.insertOne(userDoc);
       res.send(result);
     });
+
+    // all get method
+
+    //  get all therapists
+    app.get("/therapists", verifyToken, async (req, res) => {
+      const result = await therapistsCollection.find().toArray();
+      res.send(result);
+    });
+
+    // get all testimonials
+    app.get("/testimonials", verifyToken, async (req, res) => {
+      const result = await testimonialsCollection.find().toArray();
+      res.send(result);
+    });
+
+    // get all cities
+    app.get("/cities", verifyToken, async (req, res) => {
+      const result = await citiesCollection.find().toArray();
+      res.send(result);
+    });
+
+
+
 
     // Send a ping to confirm a successful connection
     // await client.db('admin').command({ ping: 1 })

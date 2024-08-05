@@ -10,39 +10,19 @@ import "./styles.css";
 // import required modules
 import { Pagination } from "swiper/modules";
 import { IoLocationSharp } from "react-icons/io5";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
-const testimonials = [
-  {
-    imgSrc: "https://i.ibb.co/KWhRhgJ/image-116.png",
-    location: "123 Elm Street, New York",
-    title: "Healing Bodywork",
-    author: "by Cort",
-    text: "Cort’s healing bodywork massage was absolutely transformative. Their intuitive touch and deep understanding of...",
-  },
-  {
-    imgSrc: "https://i.ibb.co/0F6Rw7Z/image-117.png",
-    location: "123 Elm Street, New York",
-    title: "Healing Bodywork",
-    author: "by Cort",
-    text: "Cort’s healing bodywork massage was absolutely transformative. Their intuitive touch and deep understanding of...",
-  },
-  {
-    imgSrc: "https://i.ibb.co/P4Nn7dF/image-120.png",
-    location: "123 Elm Street, New York",
-    title: "Healing Bodywork",
-    author: "by Cort",
-    text: "Cort’s healing bodywork massage was absolutely transformative. Their intuitive touch and deep understanding of...",
-  },
-  {
-    imgSrc: "https://i.ibb.co/3RrP60d/image-118.png",
-    location: "123 Elm Street, New York",
-    title: "Healing Bodywork",
-    author: "by Cort",
-    text: "Cort’s healing bodywork massage was absolutely transformative. Their intuitive touch and deep understanding of...",
-  },
-];
 
 const TestimonialSlider = () => {
+  const axiosSecure = useAxiosSecure();
+  const { data: testimonials = [] } = useQuery({
+    queryKey: ["testimonials"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/testimonials`);
+      return data;
+    },
+  });
   const createPairs = (testimonials) => {
     const pairs = [];
     for (let i = 0; i < testimonials?.length; i += 2) {

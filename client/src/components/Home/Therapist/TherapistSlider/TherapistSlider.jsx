@@ -8,50 +8,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import "./styes.css";
-
 // import required modules
 import { Pagination, Navigation, Mousewheel, Keyboard } from "swiper/modules";
 import { IoLocationSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
-const therapists = [
-  {
-    name: "Alexander Cort",
-    address: "123 Elm Street, New York",
-    service: "Mobile & In-Studio",
-    image: "https://i.ibb.co/whYS88k/image-119.png",
-  },
-  {
-    name: "Michael Smith",
-    address: "789 Maple Drive, NY",
-    service: "Mobile & In-Studio",
-    image: "https://i.ibb.co/3RrP60d/image-118.png",
-  },
-  {
-    name: "David Martinez",
-    address: "Pine Street, San Fran",
-    service: "Mobile & In-Studio",
-    image: "https://i.ibb.co/P4Nn7dF/image-120.png",
-  },
-  {
-    name: "Jennifer Lee",
-    address: "567 Cedar Lane, Miami",
-    service: "Mobile & In-Studio",
-    image: "https://i.ibb.co/wBdjGtq/image-121.png",
-  },
-  {
-    name: "Alexander Cort",
-    address: "123 Elm Street, New York",
-    service: "Mobile & In-Studio",
-    image: "https://i.ibb.co/KWhRhgJ/image-116.png",
-  },
-  {
-    name: "Michael Smith",
-    address: "789 Maple Drive, NY",
-    service: "Mobile & In-Studio",
-    image: "https://i.ibb.co/0F6Rw7Z/image-117.png",
-  },
-];
 
 const TherapistSlider = () => {
   const [slidesToShow, setSlidesToShow] = useState(
@@ -76,6 +39,15 @@ const TherapistSlider = () => {
       return 1;
     }
   }
+
+  const axiosSecure = useAxiosSecure();
+  const { data: therapists = [] } = useQuery({
+    queryKey: ["therapists"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/therapists`);
+      return data;
+    },
+  });
 
   return (
     <section className='mt-4 mx-auto relative'>
