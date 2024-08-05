@@ -3,8 +3,12 @@ import MessageTherapist from "../../components/Home/Therapist/MessageTherapist";
 import TherapistSlider from "../../components/Home/Therapist/TherapistSlider/TherapistSlider";
 import TestimonialSlider from "../../components/Home/TestimonialSlider/TestimonialSlider";
 import PopularCities from "../../components/Home/PopularCities/PopularCities";
+import useAuth from "../../hooks/useAuth";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 const Home = () => {
+  const { loading } = useAuth();
+  if (loading) return <LoadingSpinner />;
   return (
     <div className='p-10'>
       <Helmet>

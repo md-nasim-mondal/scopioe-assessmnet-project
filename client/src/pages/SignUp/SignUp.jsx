@@ -7,13 +7,15 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { imageUpload } from "../../api/utils";
 import responsiveBgImg from "../../assets/images/responsiveBg.png";
 import Slider from "../../components/Slider/Slider";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/home";
   const [isLoading, setIsLoading] = useState(false);
-  const { createUser, updateUserProfile, setUser, smallDevice } = useAuth();
+  const { createUser, updateUserProfile, setUser, smallDevice, loading } =
+    useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -62,6 +64,8 @@ const SignUp = () => {
       setIsLoading(false);
     }
   };
+
+  if (loading) return <LoadingSpinner />;
 
   if (smallDevice) {
     return (

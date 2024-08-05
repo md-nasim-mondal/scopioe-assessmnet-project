@@ -8,13 +8,14 @@ import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import responsiveBgImg from "../../assets/images/responsiveBg.png";
 import Slider from "../../components/Slider/Slider";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const from = location?.state || "/home";
-  const { signIn, signInWithGoogle, resetPassword, smallDevice } = useAuth();
+  const { signIn, signInWithGoogle, resetPassword, smallDevice, loading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [email, setEmail] = useState("");
@@ -68,6 +69,8 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+  if(loading) return <LoadingSpinner/>
 
   if (smallDevice) {
     return (
