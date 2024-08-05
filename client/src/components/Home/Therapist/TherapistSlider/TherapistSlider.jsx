@@ -19,49 +19,37 @@ const therapists = [
     name: "Alexander Cort",
     address: "123 Elm Street, New York",
     service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
+    image: "https://i.ibb.co/whYS88k/image-119.png",
   },
   {
     name: "Michael Smith",
     address: "789 Maple Drive, NY",
     service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
+    image: "https://i.ibb.co/3RrP60d/image-118.png",
   },
   {
     name: "David Martinez",
     address: "Pine Street, San Fran",
     service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
+    image: "https://i.ibb.co/P4Nn7dF/image-120.png",
   },
   {
     name: "Jennifer Lee",
     address: "567 Cedar Lane, Miami",
     service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
+    image: "https://i.ibb.co/wBdjGtq/image-121.png",
   },
   {
     name: "Alexander Cort",
     address: "123 Elm Street, New York",
     service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
+    image: "https://i.ibb.co/KWhRhgJ/image-116.png",
   },
   {
     name: "Michael Smith",
     address: "789 Maple Drive, NY",
     service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    name: "David Martinez",
-    address: "Pine Street, San Fran",
-    service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Jennifer Lee",
-    address: "567 Cedar Lane, Miami",
-    service: "Mobile & In-Studio",
-    image: "https://via.placeholder.com/150",
+    image: "https://i.ibb.co/0F6Rw7Z/image-117.png",
   },
 ];
 
@@ -113,19 +101,21 @@ const TherapistSlider = () => {
                 key={index}
                 className='bg-white dark:bg-gray-600 rounded-lg shadow-lg h-[303px]'>
                 <div className='p-4 border border-b-0 border-gray-200 rounded-t-lg'>
-                  <img
-                    src={therapist.image}
-                    alt={therapist.name}
-                    className='rounded-lg mb-4 w-full h-[150px]'
-                  />
+                  <div className='w-full h-[230px]'>
+                    <img
+                      src={therapist?.image}
+                      alt={therapist?.name}
+                      className='rounded-lg mb-4 w-full h-full object-cover'
+                    />
+                  </div>
                   <h2 className='text-xl font-bold mb-2 text-[#152A16] dark:text-white'>
-                    {therapist.name}
+                    {therapist?.name}
                   </h2>
                   <p className='text-[#152A16] mb-1 flex items-center gap-1 dark:text-white'>
-                    <IoLocationSharp /> {therapist.address}
+                    <IoLocationSharp /> {therapist?.address}
                   </p>
                   <p className='text-[#152A16] flex items-center gap-2 dark:text-white'>
-                    <FaCar /> {therapist.service}
+                    <FaCar /> {therapist?.service}
                   </p>
                 </div>
                 <button className='bg-blue-200 dark:bg-blue-300 hover:text-white px-4 py-2 rounded-b hover:bg-[#156BCA] hover:dark:bg-blue-700 w-full h-[45px] underline hover:dark:text-[#152A16]'>
