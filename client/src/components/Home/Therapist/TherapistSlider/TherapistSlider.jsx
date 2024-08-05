@@ -68,7 +68,7 @@ const TherapistSlider = () => {
             spaceBetween={30}
             modules={[Pagination, Navigation, Mousewheel, Keyboard]}
             className='mySwiper'>
-            {therapists.map((therapist, index) => (
+            {therapists?.map((therapist, index) => (
               <SwiperSlide
                 key={index}
                 className='bg-white dark:bg-gray-600 rounded-lg shadow-lg h-[303px]'>

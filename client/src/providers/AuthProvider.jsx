@@ -26,7 +26,6 @@ const AuthProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [smallDevice, setSmallDevice] = useState(window.innerWidth < 768);
 
-  console.log(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,29 +79,30 @@ const AuthProvider = ({ children }) => {
   };
   // Get token from server
   const getToken = async (email) => {
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/jwt`,
-      { email },
-      { withCredentials: true }
-    );
-    return data;
-  };
+  const { data } = await axios.post(
+    `${import.meta.env.VITE_API_URL}/jwt`,
+    { email },
+    { withCredentials: true }
+  );
+  return data;
+};
+
 
   // save user
-  const saveUser = async (user) => {
-    const currentUser = {
-      name: user?.displayName,
-      email: user?.email,
-      photo: user?.photoURL,
-      role: "user",
-      status: "Verified",
-    };
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/user`,
-      currentUser
-    );
-    return data;
-  };
+ const saveUser = async (user) => {
+   const currentUser = {
+     name: user?.displayName,
+     email: user?.email,
+     photo: user?.photoURL,
+     role: "user",
+     status: "Verified",
+   };
+   const { data } = await axios.post(
+     `${import.meta.env.VITE_API_URL}/user`,
+     currentUser
+   );
+   return data;
+ };
 
   // onAuthStateChange
   useEffect(() => {

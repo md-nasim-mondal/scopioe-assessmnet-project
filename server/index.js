@@ -26,7 +26,6 @@ app.use(cookieParser());
 // Verify Token Middleware
 const verifyToken = async (req, res, next) => {
   const token = req.cookies?.token;
-  console.log(token);
   if (!token) {
     return res.status(401).send({ message: "unauthorized access" });
   }
@@ -81,7 +80,6 @@ async function run() {
             sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
           })
           .send({ success: true });
-        console.log("Logout successful");
       } catch (err) {
         res.status(500).send(err);
       }
